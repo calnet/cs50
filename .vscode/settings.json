@@ -10,7 +10,7 @@
     "editor.foldingHighlight": true,
     "editor.formatOnSave": true,
     "editor.hover.enabled": true,
-    "editor.lightbulb.enabled": true,
+    "editor.lightbulb.enabled": "on",
     "editor.occurrencesHighlight": "singleFile",
     "editor.parameterHints.enabled": true,
     "editor.quickSuggestions": {
@@ -38,6 +38,7 @@
     "terminal.integrated.tabStopWidth": 4,
     "workbench.colorTheme": "Shades of Purple (Super Dark)",
     "workbench.statusBar.visible": true,
+    "workspaceExplorer.workspaceStorageDirectory": "D:/Users/calnet/Workspace",
     "[django-html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.quickSuggestions": {

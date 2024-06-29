@@ -5,26 +5,38 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "command": "npm run dev",
+            "name": "Run npm dev - frontend",
+            "request": "launch",
+            "type": "node-terminal",
+            "cwd": "${workspaceFolder}/frontend"
+        },
+        {
             "name": "Attach to Chrome",
             "port": 9222,
             "request": "attach",
             "type": "chrome",
+            "address": "localhost",
             "url": "http://localhost:5173",
+            "urlFilter": "http://localhost:5173/*",
             "webRoot": "${workspaceFolder}\\frontend\\src",
             "showAsyncStacks": true,
-            "disableNetworkCache": true
+            "disableNetworkCache": true,
+            "trace": true
+            // "preLaunchTask": "npm: dev - frontend"
         },
         {
             "name": "Debug React",
             "request": "launch",
             "type": "chrome",
-            "url": "http://localhost:5173",
+            "urlFilter": "http://localhost:5173/*",
             "webRoot": "${workspaceFolder}/frontend/src",
             "sourceMapPathOverrides": {
                 "webpack:///./frontend/src/*": "${webRoot}/*"
             },
             "runtimeArgs": ["--remote-debugging-port=9222"],
-            "sourceMaps": true
+            "sourceMaps": true,
+            "trace": true
         },
         {
             "name": "Launch Chrome",
@@ -33,7 +45,8 @@
             "url": "http://localhost:5173",
             "webRoot": "${workspaceFolder}\\frontend\\src",
             "showAsyncStacks": true,
-            "disableNetworkCache": true
+            "disableNetworkCache": true,
+            "trace": true
         },
         {
             "name": "Python: Django",
