@@ -17,7 +17,7 @@ def layouts(request):
                                        context={'request': request},
                                        many=True)
 
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'POST':
         serializer = LayoutsSerializer(data=request.data)
@@ -37,7 +37,7 @@ def coa_categories(request):
                                              context={'request': request},
                                              many=True)
 
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'POST':
         serializer = CoaCategoriesSerializer(data=request.data)
@@ -57,7 +57,7 @@ def nominal_types(request):
                                             context={'request': request},
                                             many=True)
 
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'POST':
         serializer = NominalTypesSerializer(data=request.data)
@@ -77,7 +77,7 @@ def nominal_codes(request):
                                             context={'request': request},
                                             many=True)
 
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'POST':
         serializer = NominalCodesSerializer(data=request.data)
@@ -100,7 +100,7 @@ def nominal_code(request, nominal_code):
                                             context={'request': request},
                                             many=True)
 
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET', 'POST'])
@@ -112,7 +112,7 @@ def coa_layout(request):
                                          context={'request': request},
                                          many=True)
 
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'POST':
         serializer = CoaLayoutSerializer(data=request.data)
