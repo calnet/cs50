@@ -39,7 +39,7 @@ class NominalType(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.type_name
+        return f"{self.type_name} ({self.coa_category})"
 
     class Meta:
         verbose_name_plural = "Nominal Types"
@@ -60,7 +60,7 @@ class NominalCode(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.nominal_code
+        return f"{self.nominal_code} - {self.nominal_name}"
 
     class Meta:
         verbose_name_plural = "Nominal Codes"
@@ -84,7 +84,8 @@ class CoaLayout(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.layout
+        # return str(self.nominal_type)
+        return f"{self.nominal_type} ({self.nominal_code_min} - {self.nominal_code_max})"
 
     class Meta:
         verbose_name_plural = "Coa Layouts"
