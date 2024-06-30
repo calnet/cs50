@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material';
-import Old_NavItem, { Old_NavItemProps } from '../NavItem/old_NavItem';
+import Old_NavItem, { Old_NavItemProps } from '../NavItem/Old_NavItem';
 
 export type Old_NavSectionProps = {
     key: string | number;
