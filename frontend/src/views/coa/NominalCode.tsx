@@ -15,15 +15,9 @@ export type NominalRecordProps = {
     updated_at: string;
 };
 
-function CreateNominalRecord({ id, layout_name, nominal_code, nominal_name, type_name, created_at, updated_at }: NominalRecordProps) {
+function CreateNominalRecord({ ...props }: NominalRecordProps) {
     return {
-        id,
-        layout_name,
-        nominal_code,
-        nominal_name,
-        type_name,
-        created_at,
-        updated_at,
+        ...props,
     };
 }
 

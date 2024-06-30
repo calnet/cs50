@@ -1,5 +1,4 @@
 import { GridColDef } from '@mui/x-data-grid';
-
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
