@@ -1,8 +1,6 @@
 import { GridColDef } from '@mui/x-data-grid';
-
-import { useEffect, useState } from 'react';
-
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
 export type CoaLayoutType = {
@@ -15,15 +13,14 @@ export type CoaLayoutType = {
     updated_at: string;
 };
 
+function createRecord({ ...props }: CoaLayoutType) {
+    return {
+        ...props,
+    };
+}
+
 function CoaLayoutList() {
     // const theme = useTheme();
-
-    function createCoaLayoutRecord({ ...props }: CoaLayoutType) {
-        return {
-            ...props,
-        };
-    }
-
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -100,7 +97,7 @@ function CoaLayoutList() {
 
     data.map((item: CoaLayoutType) =>
         rows.push(
-            createCoaLayoutRecord({
+            createRecord({
                 id: item.id,
                 layout_name: item.layout_name,
                 type_name: item.type_name,

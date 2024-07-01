@@ -1,17 +1,19 @@
-import { NominalCodeRecordType } from './NominalCode';
+import { NominalCodeType } from './NominalCode';
 import { NominalCodeDialogFields } from './NominalCodeDialogFields';
 import NominalCodeFormDialog from './NominalCodeFormDialog';
 
 interface NominalCodeDialogProps {
     open: boolean;
     handleClose: () => void;
-    selectedRow: NominalCodeRecordType | undefined | null;
+    selectedRow: NominalCodeType | undefined | null;
 }
 
-function NominalCodeDialog({ open, handleClose, selectedRow }: NominalCodeDialogProps) {
+function NominalCodeDialog({ ...props }: NominalCodeDialogProps) {
+    const { open, handleClose, selectedRow } = props;
+
     return NominalCodeFormDialog({
         formTitle: 'Nominal Code Details',
-        // contentText: 'View Nominal Code Record',
+        contentText: 'View Nominal Code Record',
         fields: NominalCodeDialogFields,
         open: open,
         handleClose: handleClose,

@@ -1,11 +1,10 @@
 import { GridColDef } from '@mui/x-data-grid';
 import axios from 'axios';
-
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-export type NominalCodeRecordType = {
+type NominalCodeType = {
     id: number;
     layout_name: string;
     nominal_code: number;
@@ -15,7 +14,7 @@ export type NominalCodeRecordType = {
     updated_at: string;
 };
 
-function CreateNominalCodeRecord({ ...props }: NominalCodeRecordType) {
+function createRecord({ ...props }: NominalCodeType) {
     return {
         ...props,
     };
@@ -24,8 +23,6 @@ function CreateNominalCodeRecord({ ...props }: NominalCodeRecordType) {
 function NominalCodeGet() {
     // const theme = useTheme();
     const [data, setData] = useState([]);
-    // const [openDialog, setOpenDialog] = useState(false);
-
     const { nominal_code } = useParams();
 
     const url = 'http://localhost:8000/api/nominal_code/' + nominal_code;
@@ -70,11 +67,11 @@ function NominalCodeGet() {
         },
     ];
 
-    const rows: NominalCodeRecordType[] = [];
+    const rows: NominalCodeType[] = [];
 
-    data.map((item: NominalCodeRecordType) =>
+    data.map((item: NominalCodeType) =>
         rows.push(
-            CreateNominalCodeRecord({
+            createRecord({
                 id: item.id,
                 layout_name: item.layout_name,
                 nominal_code: item.nominal_code,
@@ -86,14 +83,7 @@ function NominalCodeGet() {
         )
     );
 
-    // return NominalCodeDialog(rows, columns, 'Nominal Code Details');
-
-    return (
-        <>
-            {/* <NominalCodeDialog open={openDialog} handleClose={() => setOpenDialog(false)} selectedRow={data[0]} /> */}
-            <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Code Details" />;
-        </>
-    );
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Code Details" dialog="NominalCodeDialog" />;
 }
 
 export default NominalCodeGet;

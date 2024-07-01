@@ -1,10 +1,9 @@
 import { GridColDef } from '@mui/x-data-grid';
-import { useEffect, useState } from 'react';
-
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-type createDataProps = {
+type NominalCodeType = {
     id: number;
     layout_name: string;
     nominal_code: number;
@@ -14,7 +13,7 @@ type createDataProps = {
     updated_at: string;
 };
 
-function createData({ ...props }: createDataProps) {
+function createRecord({ ...props }: NominalCodeType) {
     return {
         ...props,
     };
@@ -22,19 +21,21 @@ function createData({ ...props }: createDataProps) {
 
 function NominalCodesList() {
     // const theme = useTheme();
-
     const [data, setData] = useState([]);
+
+    const url = 'http://localhost:8000/api/nominal_codes/';
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/nominal_codes/')
+            .get(url)
             .then((response) => {
                 setData(response.data);
+                console.log(response.data[0]);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }, [url]);
 
     const columns: GridColDef[] = [
         // {
@@ -98,11 +99,11 @@ function NominalCodesList() {
         // },
     ];
 
-    const rows: createDataProps[] = [];
+    const rows: NominalCodeType[] = [];
 
-    data.map((item: createDataProps) =>
+    data.map((item: NominalCodeType) =>
         rows.push(
-            createData({
+            createRecord({
                 id: item.id,
                 layout_name: item.layout_name,
                 nominal_code: item.nominal_code,
