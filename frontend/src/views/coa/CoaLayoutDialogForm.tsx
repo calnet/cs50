@@ -12,16 +12,16 @@ import {
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
-import { CoaLayoutRecordProps } from './CoaLayout';
+import { CoaLayoutType } from './CoaLayout';
 
-interface FormDialogProps {
+interface DialogForm {
     formTitle?: string;
     contentText?: string;
     fields: TextFieldProps[];
     open: boolean;
     handleClose: () => void;
     // eslint-disable-next-line
-    selectedRow: CoaLayoutRecordProps | any;
+    selectedRow: CoaLayoutType | any;
 }
 
 function PaperComponent(props: PaperProps) {
@@ -34,7 +34,8 @@ function PaperComponent(props: PaperProps) {
     );
 }
 
-function CoaLayoutFormDialog({ formTitle, contentText, fields, open, handleClose, selectedRow }: FormDialogProps) {
+function CoaLayoutDialogForm({ ...props }: DialogForm) {
+    const { formTitle, contentText, fields, open, handleClose, selectedRow } = props;
     const [localOpen, setLocalOpen] = useState(false);
     const [localSelectedRow, setLocalSelectedRow] = useState(null);
 
@@ -81,4 +82,4 @@ function CoaLayoutFormDialog({ formTitle, contentText, fields, open, handleClose
     );
 }
 
-export default CoaLayoutFormDialog;
+export default CoaLayoutDialogForm;
