@@ -5,14 +5,15 @@ import { useState } from 'react';
 import CoaLayoutDialog from '../views/coa/CoaLayoutDialog';
 import NominalCodeDialog from '../views/coa/NominalCodeDialog';
 
-interface DataGridProps {
+type CapstoneDataGridType = {
     // eslint-disable-next-line
     rows: any[];
     columns: GridColDef[];
     heading: string;
-}
+    dialog?: string;
+};
 
-function CapstoneDataGrid({ rows, columns, heading }: DataGridProps) {
+function CapstoneDataGrid({ rows, columns, heading, dialog = '' }: CapstoneDataGridType) {
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
 
