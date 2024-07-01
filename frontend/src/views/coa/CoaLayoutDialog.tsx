@@ -1,15 +1,17 @@
-import { CoaLayoutRecordProps } from './CoaLayout';
+import { CoaLayoutType } from './CoaLayout';
 import { CoaLayoutDialogFields } from './CoaLayoutDialogFields';
-import CoaLayoutFormDialog from './CoaLayoutFormDialog';
+import CoaLayoutDialogForm from './CoaLayoutDialogForm';
 
 interface CoaLayoutDialogProps {
     open: boolean;
     handleClose: () => void;
-    selectedRow: CoaLayoutRecordProps | undefined | null;
+    selectedRow: CoaLayoutType | undefined | null;
 }
 
-function CoaLayoutDialog({ open, handleClose, selectedRow }: CoaLayoutDialogProps) {
-    return CoaLayoutFormDialog({
+function CoaLayoutDialog({ ...props }: CoaLayoutDialogProps) {
+    const { open, handleClose, selectedRow } = props;
+
+    return CoaLayoutDialogForm({
         formTitle: 'Coa Layout Details',
         contentText: 'View Coa Layout Record',
         fields: CoaLayoutDialogFields,

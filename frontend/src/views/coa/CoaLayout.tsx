@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-export type CoaLayoutRecordProps = {
+export type CoaLayoutType = {
     id: number;
     layout_name: string;
     type_name: string;
@@ -18,23 +18,9 @@ export type CoaLayoutRecordProps = {
 function CoaLayoutList() {
     // const theme = useTheme();
 
-    function CoaLayoutRecord({
-        id,
-        layout_name,
-        type_name,
-        nominal_code_min,
-        nominal_code_max,
-        created_at,
-        updated_at,
-    }: CoaLayoutRecordProps) {
+    function createCoaLayoutRecord({ ...props }: CoaLayoutType) {
         return {
-            id,
-            layout_name,
-            type_name,
-            nominal_code_min,
-            nominal_code_max,
-            created_at,
-            updated_at,
+            ...props,
         };
     }
 
@@ -110,11 +96,11 @@ function CoaLayoutList() {
         // },
     ];
 
-    const rows: CoaLayoutRecordProps[] = [];
+    const rows: CoaLayoutType[] = [];
 
-    data.map((item: CoaLayoutRecordProps) =>
+    data.map((item: CoaLayoutType) =>
         rows.push(
-            CoaLayoutRecord({
+            createCoaLayoutRecord({
                 id: item.id,
                 layout_name: item.layout_name,
                 type_name: item.type_name,
@@ -126,7 +112,7 @@ function CoaLayoutList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Chart of Accounts Layout" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Chart of Accounts Layout" dialog="CoaLayoutDialog" />;
 }
 
 export default CoaLayoutList;

@@ -1,11 +1,11 @@
-import { NominalRecordProps } from './NominalCode';
+import { NominalCodeRecordType } from './NominalCode';
 import { NominalCodeDialogFields } from './NominalCodeDialogFields';
 import NominalCodeFormDialog from './NominalCodeFormDialog';
 
 interface NominalCodeDialogProps {
     open: boolean;
     handleClose: () => void;
-    selectedRow: NominalRecordProps | undefined | null;
+    selectedRow: NominalCodeRecordType | undefined | null;
 }
 
 function NominalCodeDialog({ open, handleClose, selectedRow }: NominalCodeDialogProps) {

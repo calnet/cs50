@@ -21,29 +21,9 @@ type createDataProps = {
 function CustomersList() {
     // const theme = useTheme();
 
-    function createData({
-        id,
-        account_reference,
-        account_name,
-        account_status,
-        balance,
-        contact_name,
-        credit_limit,
-        telephone_number,
-        created_at,
-        updated_at,
-    }: createDataProps) {
+    function createData({ ...props }: createDataProps) {
         return {
-            id,
-            account_reference,
-            account_name,
-            account_status,
-            balance,
-            contact_name,
-            credit_limit,
-            telephone_number,
-            created_at,
-            updated_at,
+            ...props,
         };
     }
 

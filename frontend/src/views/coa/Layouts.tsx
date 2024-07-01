@@ -16,13 +16,9 @@ type createDataProps = {
 function Layouts() {
     // const theme = useTheme();
 
-    function createData({ id, layout_name, description, created_at, updated_at }: createDataProps) {
+    function createData({ ...props }: createDataProps) {
         return {
-            id,
-            layout_name,
-            description,
-            created_at,
-            updated_at,
+            ...props,
         };
     }
 

@@ -16,13 +16,9 @@ type createDataProps = {
 function NominalTypesList() {
     // const theme = useTheme();
 
-    function createData({ id, type_name, category_name, created_at, updated_at }: createDataProps) {
+    function createData({ ...props }: createDataProps) {
         return {
-            id,
-            type_name,
-            category_name,
-            created_at,
-            updated_at,
+            ...props,
         };
     }
 

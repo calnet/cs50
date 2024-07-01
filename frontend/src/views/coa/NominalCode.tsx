@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-export type NominalRecordProps = {
+export type NominalCodeRecordType = {
     id: number;
     layout_name: string;
     nominal_code: number;
@@ -15,7 +15,7 @@ export type NominalRecordProps = {
     updated_at: string;
 };
 
-function CreateNominalRecord({ ...props }: NominalRecordProps) {
+function CreateNominalCodeRecord({ ...props }: NominalCodeRecordType) {
     return {
         ...props,
     };
@@ -70,11 +70,11 @@ function NominalCodeGet() {
         },
     ];
 
-    const rows: NominalRecordProps[] = [];
+    const rows: NominalCodeRecordType[] = [];
 
-    data.map((item: NominalRecordProps) =>
+    data.map((item: NominalCodeRecordType) =>
         rows.push(
-            CreateNominalRecord({
+            CreateNominalCodeRecord({
                 id: item.id,
                 layout_name: item.layout_name,
                 nominal_code: item.nominal_code,

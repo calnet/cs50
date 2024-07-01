@@ -25,10 +25,10 @@ import { visuallyHidden } from '@mui/utils';
 import * as React from 'react';
 
 interface Data {
-    calories: number;
-    carbs: number;
-    fat: number;
     name: string;
+    calories: number;
+    fat: number;
+    carbs: number;
     protein: number;
 }
 

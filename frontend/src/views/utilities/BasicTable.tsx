@@ -11,8 +11,10 @@ type createDataProps = {
 function BasicTable() {
     const theme = useTheme();
 
-    function createData({ name, calories, fat, carbs, protein }: createDataProps) {
-        return { name, calories, fat, carbs, protein };
+    function createData({ ...props }: createDataProps) {
+        return {
+            ...props,
+        };
     }
 
     const rows = [

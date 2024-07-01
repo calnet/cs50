@@ -14,15 +14,9 @@ type createDataProps = {
     updated_at: string;
 };
 
-function createData({ id, layout_name, nominal_code, nominal_name, type_name, created_at, updated_at }: createDataProps) {
+function createData({ ...props }: createDataProps) {
     return {
-        id,
-        layout_name,
-        nominal_code,
-        nominal_name,
-        type_name,
-        created_at,
-        updated_at,
+        ...props,
     };
 }
 
@@ -120,7 +114,7 @@ function NominalCodesList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Codes" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Codes" dialog="NominalCodeDialog" />;
 }
 
 export default NominalCodesList;

@@ -24,35 +24,9 @@ type createDataProps = {
 function BankingAccountList() {
     // const theme = useTheme();
 
-    function createData({
-        id,
-        account_name,
-        account_number,
-        account_sort_code,
-        account_status,
-        account_type,
-        balance,
-        credit_limit,
-        currency,
-        opening_balance,
-        opening_balance_date,
-        created_at,
-        updated_at,
-    }: createDataProps) {
+    function createData({ ...props }: createDataProps) {
         return {
-            id,
-            account_name,
-            account_number,
-            account_sort_code,
-            account_status,
-            account_type,
-            balance,
-            credit_limit,
-            currency,
-            opening_balance,
-            opening_balance_date,
-            created_at,
-            updated_at,
+            ...props,
         };
     }
 

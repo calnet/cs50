@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
-import { NominalRecordProps } from './NominalCode';
+import { NominalCodeRecordType } from './NominalCode';
 
 interface FormDialogProps {
     formTitle?: string;
@@ -21,7 +21,7 @@ interface FormDialogProps {
     open: boolean;
     handleClose: () => void;
     // eslint-disable-next-line
-    selectedRow: NominalRecordProps | any;
+    selectedRow: NominalCodeRecordType | any;
 }
 
 function PaperComponent(props: PaperProps) {

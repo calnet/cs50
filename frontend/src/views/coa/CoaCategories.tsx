@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-type createDataProps = {
+type CoaCategoryType = {
     id: number;
     category_name: string;
     created_at: string;
@@ -15,12 +15,9 @@ type createDataProps = {
 function CoaCategoriesList() {
     // const theme = useTheme();
 
-    function createData({ id, category_name, created_at, updated_at }: createDataProps) {
+    function createCoaCategoryRecord({ ...props }: CoaCategoryType) {
         return {
-            id,
-            category_name,
-            created_at,
-            updated_at,
+            ...props,
         };
     }
 
