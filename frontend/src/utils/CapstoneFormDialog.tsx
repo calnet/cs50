@@ -13,11 +13,11 @@ import {
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 
-interface FormDialogProps {
+type FormDialogType = {
     formTitle: string;
     contentText?: string;
     fields: TextFieldProps[];
-}
+};
 
 function PaperComponent(props: PaperProps) {
     const nodeRef = useRef(null);
@@ -28,7 +28,7 @@ function PaperComponent(props: PaperProps) {
     );
 }
 
-function CapstoneFormDialog({ formTitle, contentText, fields }: FormDialogProps) {
+function CapstoneFormDialog({ formTitle, contentText, fields }: FormDialogType) {
     const [open, setOpen] = useState(true);
 
     // const handleClickOpen = () => {
