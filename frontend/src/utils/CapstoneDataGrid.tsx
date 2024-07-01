@@ -24,13 +24,16 @@ function CapstoneDataGrid({ rows, columns, heading, dialog = '' }: CapstoneDataG
         setOpenDialog(true);
     };
 
-    switch (heading) {
-        case 'Chart of Accounts Layout':
-            setOpenDialog;
-            break;
+    const componentMap = {
+        NominalCodeDialog: NominalCodeDialog,
+        CoaLayoutDialog: CoaLayoutDialog,
+        // Add more components as needed
+    };
 
-        default:
-            break;
+    let DialogComponent = null;
+
+    if (dialog in componentMap) {
+        DialogComponent = componentMap[dialog as keyof typeof componentMap];
     }
 
     return (
@@ -48,15 +51,14 @@ function CapstoneDataGrid({ rows, columns, heading, dialog = '' }: CapstoneDataG
                     pageSizeOptions={[5, 10, 25]}
                     onRowClick={(params: GridRowParams) => {
                         setSelectedRow(params.row);
-                        if (heading == 'Nominal Codes' || heading == 'Nominal Code Details' || heading == 'Chart of Accounts Layout') {
-                            handleRowClick(params);
-                        }
+                        handleRowClick(params);
                     }}
 
                     // checkboxSelection
                 />
-                <NominalCodeDialog open={openDialog} handleClose={() => setOpenDialog(false)} selectedRow={selectedRow} />
-                <CoaLayoutDialog open={openDialog} handleClose={() => setOpenDialog(false)} selectedRow={selectedRow} />
+                {DialogComponent && (
+                    <DialogComponent open={openDialog} handleClose={() => setOpenDialog(false)} selectedRow={selectedRow} />
+                )}
             </Box>
         </>
     );
