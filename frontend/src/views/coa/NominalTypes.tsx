@@ -1,11 +1,9 @@
 import { GridColDef } from '@mui/x-data-grid';
-
-import { useEffect, useState } from 'react';
-
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-type createDataProps = {
+type NominalTypeProps = {
     id: number;
     type_name: string;
     category_name: string;
@@ -13,27 +11,29 @@ type createDataProps = {
     updated_at: string;
 };
 
+function createRecord({ ...props }: NominalTypeProps) {
+    return {
+        ...props,
+    };
+}
+
 function NominalTypesList() {
     // const theme = useTheme();
-
-    function createData({ ...props }: createDataProps) {
-        return {
-            ...props,
-        };
-    }
-
     const [data, setData] = useState([]);
+
+    const url = 'http://localhost:8000/api/nominal_types/';
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/nominal_types/')
+            .get(url)
             .then((response) => {
                 setData(response.data);
+                console.log(response.data[0]);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }, [url]);
 
     const columns: GridColDef[] = [
         {
@@ -80,11 +80,11 @@ function NominalTypesList() {
         // },
     ];
 
-    const rows: createDataProps[] = [];
+    const rows: NominalTypeProps[] = [];
 
-    data.map((item: createDataProps) =>
+    data.map((item: NominalTypeProps) =>
         rows.push(
-            createData({
+            createRecord({
                 id: item.id,
                 type_name: item.type_name,
                 category_name: item.category_name,
@@ -94,7 +94,7 @@ function NominalTypesList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Types" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Types" dialog="NominalTypeDialog" />;
 }
 
 export default NominalTypesList;

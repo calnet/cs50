@@ -1,38 +1,38 @@
 import { GridColDef } from '@mui/x-data-grid';
-
-import { useEffect, useState } from 'react';
-
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-type CoaCategoryType = {
+export type CoaCategoryType = {
     id: number;
     category_name: string;
     created_at: string;
     updated_at: string;
 };
 
+function createRecord({ ...props }: CoaCategoryType) {
+    return {
+        ...props,
+    };
+}
+
 function CoaCategoriesList() {
     // const theme = useTheme();
-
-    function createCoaCategoryRecord({ ...props }: CoaCategoryType) {
-        return {
-            ...props,
-        };
-    }
-
     const [data, setData] = useState([]);
+
+    const url = 'http://localhost:8000/api/coa_categories/';
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/coa_categories/')
+            .get(url)
             .then((response) => {
                 setData(response.data);
+                console.log(response.data[0]);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }, [url]);
 
     const columns: GridColDef[] = [
         {
@@ -67,7 +67,7 @@ function CoaCategoriesList() {
 
     data.map((item: CoaCategoryType) =>
         rows.push(
-            createCoaCategoryRecord({
+            createRecord({
                 id: item.id,
                 category_name: item.category_name,
                 created_at: item.created_at,
@@ -76,7 +76,7 @@ function CoaCategoriesList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Coa Categories" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Coa Categories" dialog="CoaCategoryDialog" />;
 }
 
 export default CoaCategoriesList;

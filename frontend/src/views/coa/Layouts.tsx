@@ -1,11 +1,9 @@
 import { GridColDef } from '@mui/x-data-grid';
-
-import { useEffect, useState } from 'react';
-
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-type createDataProps = {
+type LayoutType = {
     id: number;
     layout_name: string;
     description: string;
@@ -13,27 +11,29 @@ type createDataProps = {
     updated_at: string;
 };
 
+function createRecord({ ...props }: LayoutType) {
+    return {
+        ...props,
+    };
+}
+
 function Layouts() {
     // const theme = useTheme();
-
-    function createData({ ...props }: createDataProps) {
-        return {
-            ...props,
-        };
-    }
-
     const [data, setData] = useState([]);
+
+    const url = 'http://localhost:8000/api/layouts/';
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/layouts/')
+            .get(url)
             .then((response) => {
                 setData(response.data);
+                console.log(response.data[0]);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }, [url]);
 
     const columns: GridColDef[] = [
         {
@@ -70,11 +70,11 @@ function Layouts() {
         // },
     ];
 
-    const rows: createDataProps[] = [];
+    const rows: LayoutType[] = [];
 
-    data.map((item: createDataProps) =>
+    data.map((item: LayoutType) =>
         rows.push(
-            createData({
+            createRecord({
                 id: item.id,
                 layout_name: item.layout_name,
                 description: item.description,
@@ -84,7 +84,7 @@ function Layouts() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Layouts" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Layouts" dialog="LayoutDialog" />;
 }
 
 export default Layouts;

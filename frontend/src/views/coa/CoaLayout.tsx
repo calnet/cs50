@@ -23,16 +23,19 @@ function CoaLayoutList() {
     // const theme = useTheme();
     const [data, setData] = useState([]);
 
+    const url = 'http://localhost:8000/api/coa_layout/';
+
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/coa_layout/')
+            .get(url)
             .then((response) => {
                 setData(response.data);
+                console.log(response.data[0]);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }, [url]);
 
     const columns: GridColDef[] = [
         // {
