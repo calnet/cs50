@@ -63,11 +63,11 @@ function CoaCategoriesList() {
         // },
     ];
 
-    const rows: createDataProps[] = [];
+    const rows: CoaCategoryType[] = [];
 
-    data.map((item: createDataProps) =>
+    data.map((item: CoaCategoryType) =>
         rows.push(
-            createData({
+            createCoaCategoryRecord({
                 id: item.id,
                 category_name: item.category_name,
                 created_at: item.created_at,
