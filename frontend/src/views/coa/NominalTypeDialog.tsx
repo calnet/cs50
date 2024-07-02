@@ -2,13 +2,13 @@ import { NominalTypeDialogFields } from './NominalTypeDialogFields';
 import NominalTypeFormDialog from './NominalTypeFormDialog';
 import { NominalTypeProps } from './NominalTypes';
 
-interface NominalCodeDialogProps {
+interface NominalTypeDialogProps {
     open: boolean;
     handleClose: () => void;
     selectedRow: NominalTypeProps | undefined | null;
 }
 
-function NominalTypeDialog({ ...props }: NominalCodeDialogProps) {
+function NominalTypeDialog({ ...props }: NominalTypeDialogProps) {
     const { open, handleClose, selectedRow } = props;
 
     return NominalTypeFormDialog({
