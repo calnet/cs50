@@ -69,6 +69,21 @@ def nominal_types(request):
 
 
 @api_view(['GET', 'POST'])
+def nominal_type(request, id):
+    if request.method == 'GET':
+
+        data = NominalType.objects.filter(
+            id=id
+        )
+
+        serializer = NominalTypesSerializer(data,
+                                            context={'request': request},
+                                            many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@ api_view(['GET', 'POST'])
 def nominal_codes(request):
     if request.method == 'GET':
         data = NominalCode.objects.all()
@@ -88,7 +103,7 @@ def nominal_codes(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'POST'])
+@ api_view(['GET', 'POST'])
 def nominal_code(request, nominal_code):
     if request.method == 'GET':
 
@@ -103,7 +118,7 @@ def nominal_code(request, nominal_code):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@api_view(['GET', 'POST'])
+@ api_view(['GET', 'POST'])
 def coa_layout(request):
     if request.method == 'GET':
         data = CoaLayout.objects.all()

@@ -4,6 +4,7 @@ import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
 import { useState } from 'react';
 import CoaLayoutDialog from '../views/coa/CoaLayoutDialog';
 import NominalCodeDialog from '../views/coa/NominalCodeDialog';
+import NominalTypeDialog from '../views/coa/NominalTypeDialog';
 
 type CapstoneDataGridType = {
     // eslint-disable-next-line
@@ -25,8 +26,12 @@ function CapstoneDataGrid({ rows, columns, heading, dialog = '' }: CapstoneDataG
     };
 
     const componentMap = {
-        NominalCodeDialog: NominalCodeDialog,
+        // CoaCategoryDialog: CoaCategoryDialog,
         CoaLayoutDialog: CoaLayoutDialog,
+        // LayoutDialog: LayoutDialog,
+        NominalCodeDialog: NominalCodeDialog,
+        NominalTypeDialog: NominalTypeDialog,
+
         // Add more components as needed
     };
 

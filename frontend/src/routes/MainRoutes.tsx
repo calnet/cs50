@@ -41,6 +41,7 @@ const SupplierPurchaseOrders = Loadable(lazy(() => import('../views/suppliers/Su
 const Layouts = Loadable(lazy(() => import('../views/coa/Layouts')));
 const CoaLayout = Loadable(lazy(() => import('../views/coa/CoaLayout')));
 const CoaCategories = Loadable(lazy(() => import('../views/coa/CoaCategories')));
+const NominalTypeGet = Loadable(lazy(() => import('../views/coa/NominalType')));
 const NominalTypes = Loadable(lazy(() => import('../views/coa/NominalTypes')));
 const NominalCodeGet = Loadable(lazy(() => import('../views/coa/NominalCode')));
 const NominalCodes = Loadable(lazy(() => import('../views/coa/NominalCodes')));
@@ -176,6 +177,10 @@ const MainRoutes: RouteObject = {
                 {
                     path: 'coa_categories',
                     element: <CoaCategories />,
+                },
+                {
+                    path: 'nominal_type/:id',
+                    element: <NominalTypeGet />,
                 },
                 {
                     path: 'nominal_types',
