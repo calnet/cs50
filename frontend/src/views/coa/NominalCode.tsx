@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-type NominalCodeType = {
+export type NominalCodeType = {
     id: number;
     layout_name: string;
     nominal_code: number;

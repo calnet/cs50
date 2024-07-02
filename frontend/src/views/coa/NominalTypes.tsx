@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-type NominalTypeProps = {
+export type NominalTypeProps = {
     id: number;
     type_name: string;
     category_name: string;
