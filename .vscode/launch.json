@@ -53,6 +53,7 @@
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}\\backend\\manage.py",
+            "console": "internalConsole",
             "args": ["runserver"],
             "django": true,
             "showReturnValue": true,
@@ -67,6 +68,7 @@
             "request": "launch",
             "program": "${workspaceFolder}\\backend\\manage.py",
             "args": ["runserver"],
+            "console": "internalConsole",
             "django": true,
             "showReturnValue": true,
             "justMyCode": false
