@@ -5,14 +5,13 @@ from .models import CoaCategory, Layout, NominalCode, NominalType, CoaLayout
 class LayoutsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Layout
-        fields = ['id', 'layout_name', 'description',
-                  'created_at', 'updated_at']
+        fields = '__all__'
 
 
 class CoaCategoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = CoaCategory
-        fields = ['id', 'category_name', 'created_at', 'updated_at']
+        fields = '__all__'
 
 
 class NominalTypesSerializer(serializers.ModelSerializer):
@@ -21,8 +20,7 @@ class NominalTypesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NominalType
-        fields = ['id', 'type_name', 'category_name',
-                  'created_at', 'updated_at']
+        fields = '__all__'
 
     def get_category_name(self, obj):
         # Retrieve the category_name from the related CoaCategory
@@ -38,8 +36,7 @@ class NominalCodesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NominalCode
-        fields = ['id', 'layout_name', 'nominal_code', 'type_name',
-                  'nominal_name', 'created_at', 'updated_at']
+        fields = '__all__'
 
     def get_layout_name(self, obj):
         # Retrieve the layout_name from the related CoaLayout
@@ -59,8 +56,7 @@ class CoaLayoutSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CoaLayout
-        fields = ['id', 'layout_name', 'type_name', 'nominal_code_min',
-                  'nominal_code_max', 'created_at', 'updated_at']
+        fields = '__all__'
 
     def get_layout_name(self, obj):
         # Retrieve the layout_name from the related CoaLayout
