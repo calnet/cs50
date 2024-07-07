@@ -4,8 +4,9 @@ from rest_framework import status
 from .models import Customer
 from .serializers import CustomerSerializer
 
-
 # Create your views here.
+
+
 @api_view(['GET', 'POST'])
 def customers_list(request):
     if request.method == 'GET':
