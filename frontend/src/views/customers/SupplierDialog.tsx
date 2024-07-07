@@ -1,18 +1,18 @@
 import { ViewComponentDialogType } from '../../types/ViewComponentDialogType';
 import CapstoneFormDialog from '../../utils/CapstoneFormDialog';
-import { NominalCodeDialogFields } from './NominalCodeDialogFields';
+import SupplierDialogFields from './SupplierDialogFields';
 
-function NominalCodeDialog({ ...props }: ViewComponentDialogType) {
+function SupplierDialog({ ...props }: ViewComponentDialogType) {
     const { dialogState, handleClose, selectedRow } = props;
 
     return CapstoneFormDialog({
-        formTitle: 'Nominal Code Details',
-        contentText: 'View Nominal Code Record',
-        fields: NominalCodeDialogFields,
+        formTitle: 'Supplier Details',
+        contentText: 'View Supplier Record Details',
+        fields: SupplierDialogFields,
         dialogState: dialogState,
         handleClose: handleClose,
         selectedRow: selectedRow,
     });
 }
 
-export default NominalCodeDialog;
+export default SupplierDialog;

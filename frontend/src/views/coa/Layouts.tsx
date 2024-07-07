@@ -1,15 +1,8 @@
 import { GridColDef } from '@mui/x-data-grid';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { LayoutType } from '../../types/ViewComponentType';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
-
-type LayoutType = {
-    id: number;
-    layout_name: string;
-    description: string;
-    created_at: string;
-    updated_at: string;
-};
 
 function createRecord({ ...props }: LayoutType) {
     return {

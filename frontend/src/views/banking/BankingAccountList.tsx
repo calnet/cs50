@@ -1,55 +1,40 @@
 import { GridColDef } from '@mui/x-data-grid';
-
-import { useEffect, useState } from 'react';
-
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { BankingAccountType } from '../../types/ViewComponentType';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-type createDataProps = {
-    id: number;
-    account_type: string;
-    account_name: string;
-    account_number: number;
-    account_sort_code: string;
-    account_status: string;
-    balance: number;
-    credit_limit: number;
-    currency: string;
-    opening_balance: number;
-    opening_balance_date: string;
-    created_at: string;
-    updated_at: string;
-};
+function createRecord({ ...props }: BankingAccountType) {
+    return {
+        ...props,
+    };
+}
 
 function BankingAccountList() {
     // const theme = useTheme();
-
-    function createData({ ...props }: createDataProps) {
-        return {
-            ...props,
-        };
-    }
-
     const [data, setData] = useState([]);
+
+    const url = 'http://localhost:8000/api/banking/';
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/banking/')
+            .get(url)
             .then((response) => {
                 setData(response.data);
+                console.log(response.data[0]);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }, [url]);
 
     const columns: GridColDef[] = [
-        // {
-        //     field: 'id',
-        //     headerName: 'ID',
-        //     type: 'number',
-        //     flex: 1,
-        // },
+        {
+            field: 'id',
+            headerName: 'ID',
+            type: 'number',
+            flex: 1,
+        },
         {
             field: 'account_name',
             headerName: 'Account Name',
@@ -92,43 +77,43 @@ function BankingAccountList() {
             type: 'number',
             flex: 1,
         },
-        // {
-        //     field: 'currency',
-        //     headerName: 'Currency',
-        //     type: 'string',
-        //     flex: 1,
-        // },
-        // {
-        //     field: 'opening_balance',
-        //     headerName: 'Opening Balance',
-        //     type: 'number',
-        //     flex: 1,
-        // },
-        // {
-        //     field: 'opening_balance_date',
-        //     headerName: 'Opening Balance Date',
-        //     type: 'string',
-        //     flex: 1,
-        // },
-        // {
-        //     field: 'created_at',
-        //     headerName: 'Created At',
-        //     type: 'string',
-        //     flex: 1,
-        // },
-        // {
-        //     field: 'updated_at',
-        //     headerName: 'Updated At',
-        //     type: 'string',
-        //     flex: 1,
-        // },
+        {
+            field: 'currency',
+            headerName: 'Currency',
+            type: 'string',
+            flex: 1,
+        },
+        {
+            field: 'opening_balance',
+            headerName: 'Opening Balance',
+            type: 'number',
+            flex: 1,
+        },
+        {
+            field: 'opening_balance_date',
+            headerName: 'Opening Balance Date',
+            type: 'string',
+            flex: 1,
+        },
+        {
+            field: 'created_at',
+            headerName: 'Created At',
+            type: 'string',
+            flex: 1,
+        },
+        {
+            field: 'updated_at',
+            headerName: 'Updated At',
+            type: 'string',
+            flex: 1,
+        },
     ];
 
-    const rows: createDataProps[] = [];
+    const rows: BankingAccountType[] = [];
 
-    data.map((item: createDataProps) =>
+    data.map((item: BankingAccountType) =>
         rows.push(
-            createData({
+            createRecord({
                 id: item.id,
                 account_name: item.account_name,
                 account_number: item.account_number,
@@ -146,7 +131,7 @@ function BankingAccountList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Banking" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Banking" dialog="BankingAccountListDialog" />;
 }
 
 export default BankingAccountList;

@@ -1,38 +1,18 @@
-import { TextFieldProps } from '@mui/material';
+import { ViewComponentDialogType } from '../../types/ViewComponentDialogType';
 import CapstoneFormDialog from '../../utils/CapstoneFormDialog';
+import CustomerDialogFields from './CustomerDialogFields';
 
-const customerFields: TextFieldProps[] = [
-    {
-        autoFocus: true,
-        margin: 'dense',
-        id: 'firstName',
-        label: 'First Name',
-        type: 'text',
-        fullWidth: true,
-        variant: 'outlined',
-    },
-    {
-        autoFocus: false,
-        margin: 'dense',
-        id: 'lastName',
-        label: 'Last Name',
-        type: 'text',
-        fullWidth: true,
-        variant: 'outlined',
-    },
-    {
-        autoFocus: false,
-        margin: 'dense',
-        id: 'email',
-        label: 'Email Address',
-        type: 'email',
-        fullWidth: true,
-        variant: 'outlined',
-    },
-];
+function CustomerDialog({ ...props }: ViewComponentDialogType) {
+    const { dialogState, handleClose, selectedRow } = props;
 
-function CustomerDialog() {
-    return CapstoneFormDialog({ formTitle: 'New Customer', contentText: 'Add a new customer', fields: customerFields });
+    return CapstoneFormDialog({
+        formTitle: 'Customer Details',
+        contentText: 'View Customer Record Details',
+        fields: CustomerDialogFields,
+        dialogState: dialogState,
+        handleClose: handleClose,
+        selectedRow: selectedRow,
+    });
 }
 
 export default CustomerDialog;

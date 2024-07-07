@@ -1,21 +1,15 @@
-import { CoaLayoutType } from './CoaLayout';
+import { ViewComponentDialogType } from '../../types/ViewComponentDialogType';
+import CapstoneFormDialog from '../../utils/CapstoneFormDialog';
 import { CoaLayoutDialogFields } from './CoaLayoutDialogFields';
-import CoaLayoutDialogForm from './CoaLayoutDialogForm';
 
-interface CoaLayoutDialogProps {
-    open: boolean;
-    handleClose: () => void;
-    selectedRow: CoaLayoutType | undefined | null;
-}
+function CoaLayoutDialog({ ...props }: ViewComponentDialogType) {
+    const { dialogState, handleClose, selectedRow } = props;
 
-function CoaLayoutDialog({ ...props }: CoaLayoutDialogProps) {
-    const { open, handleClose, selectedRow } = props;
-
-    return CoaLayoutDialogForm({
+    return CapstoneFormDialog({
         formTitle: 'Coa Layout Details',
         contentText: 'View Coa Layout Record',
         fields: CoaLayoutDialogFields,
-        open: open,
+        dialogState: dialogState,
         handleClose: handleClose,
         selectedRow: selectedRow,
     });

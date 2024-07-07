@@ -10,17 +10,24 @@ import {
     TextField,
     TextFieldProps,
 } from '@mui/material';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 
-type FormDialogType = {
-    formTitle: string;
+interface FormDialogType {
+    formTitle?: string;
     contentText?: string;
     fields: TextFieldProps[];
-};
+    dialogState: boolean;
+    handleClose: () => void;
+    // eslint-disable-next-line
+    selectedRow: any;
+    // TODO: Fix the type of selectedRow
+    // selectedRow: ViewComponentType | any;
+}
 
 function PaperComponent(props: PaperProps) {
     const nodeRef = useRef(null);
+
     return (
         <Draggable nodeRef={nodeRef} handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
             <Paper {...props} ref={nodeRef} />
@@ -28,19 +35,29 @@ function PaperComponent(props: PaperProps) {
     );
 }
 
-function CapstoneFormDialog({ formTitle, contentText, fields }: FormDialogType) {
-    const [open, setOpen] = useState(true);
+function CapstoneFormDialog({ ...props }: FormDialogType) {
+    const { formTitle, contentText, fields, dialogState, handleClose, selectedRow } = props;
+    const [localDialogState, setLocalDialogState] = useState(false);
+    const [localSelectedRow, setLocalSelectedRow] = useState(null);
 
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // };
+    // Update local state when props change
+    useEffect(() => {
+        setLocalDialogState(dialogState);
+        setLocalSelectedRow(selectedRow);
+    }, [dialogState, selectedRow]);
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleCloseDialog = () => {
+        setLocalDialogState(false);
+        handleClose();
     };
 
     return (
-        <Dialog open={open} onClose={handleClose} PaperComponent={PaperComponent} aria-labelledby="draggable-dialog-title">
+        <Dialog
+            open={localDialogState}
+            onClose={handleCloseDialog}
+            PaperComponent={PaperComponent}
+            aria-labelledby="draggable-dialog-title"
+        >
             <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
                 {formTitle}
             </DialogTitle>
@@ -58,13 +75,14 @@ function CapstoneFormDialog({ formTitle, contentText, fields }: FormDialogType) 
                             type={field.type}
                             fullWidth={field.fullWidth}
                             variant={field.variant}
+                            value={field.id && localSelectedRow ? localSelectedRow[field.id] : ''}
                         />
                     );
                 })}
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Save</Button>
+                <Button onClick={handleCloseDialog}>Cancel</Button>
+                <Button onClick={handleCloseDialog}>Save</Button>
             </DialogActions>
         </Dialog>
     );

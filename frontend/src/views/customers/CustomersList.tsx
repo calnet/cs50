@@ -1,49 +1,39 @@
 import { GridColDef } from '@mui/x-data-grid';
-
-import { useEffect, useState } from 'react';
-
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { CustomerType } from '../../types/ViewComponentType';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
 
-type createDataProps = {
-    id: number;
-    account_reference: string;
-    account_name: string;
-    account_status: string;
-    balance: number;
-    contact_name: string;
-    credit_limit: number;
-    telephone_number: string;
-    created_at: string;
-    updated_at: string;
-};
+function createRecord({ ...props }: CustomerType) {
+    return {
+        ...props,
+    };
+}
 
 function CustomersList() {
     // const theme = useTheme();
-
-    function createData({ ...props }: createDataProps) {
-        return {
-            ...props,
-        };
-    }
-
     const [data, setData] = useState([]);
+
+    const url = 'http://localhost:8000/api/customers/';
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/customers/')
+            .get(url)
             .then((response) => {
                 setData(response.data);
+                console.log(response.data[0]);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }, [url]);
 
     const columns: GridColDef[] = [
         {
             field: 'id',
             headerName: 'ID',
+            headerAlign: 'left',
+            align: 'left',
             type: 'number',
             flex: 1,
         },
@@ -87,13 +77,25 @@ function CustomersList() {
             type: 'string',
             flex: 1,
         },
+        // {
+        //     field: 'created_at',
+        //     headerName: 'Created',
+        //     type: 'string',
+        //     flex: 0.25,
+        // },
+        // {
+        //     field: 'updated_at',
+        //     headerName: 'Updated',
+        //     type: 'string',
+        //     flex: 0.25,
+        // },
     ];
 
-    const rows: createDataProps[] = [];
+    const rows: CustomerType[] = [];
 
-    data.map((item: createDataProps) =>
+    data.map((item: CustomerType) =>
         rows.push(
-            createData({
+            createRecord({
                 id: item.id,
                 account_reference: item.account_reference,
                 account_name: item.account_name,
@@ -108,7 +110,7 @@ function CustomersList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Customers" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Customers" dialog="CustomerDialog" />;
 }
 
 export default CustomersList;

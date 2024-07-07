@@ -1,18 +1,18 @@
 import { ViewComponentDialogType } from '../../types/ViewComponentDialogType';
 import CapstoneFormDialog from '../../utils/CapstoneFormDialog';
-import { NominalCodeDialogFields } from './NominalCodeDialogFields';
+import BankingAccountListDialogFields from './BankingAccountListDialogFields';
 
-function NominalCodeDialog({ ...props }: ViewComponentDialogType) {
+function BankingAccountListDialog({ ...props }: ViewComponentDialogType) {
     const { dialogState, handleClose, selectedRow } = props;
 
     return CapstoneFormDialog({
-        formTitle: 'Nominal Code Details',
-        contentText: 'View Nominal Code Record',
-        fields: NominalCodeDialogFields,
+        formTitle: 'Bank Account Details',
+        contentText: 'View Bank Account record',
+        fields: BankingAccountListDialogFields,
         dialogState: dialogState,
         handleClose: handleClose,
         selectedRow: selectedRow,
     });
 }
 
-export default NominalCodeDialog;
+export default BankingAccountListDialog;

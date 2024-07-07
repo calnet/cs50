@@ -1,21 +1,15 @@
+import { ViewComponentDialogType } from '../../types/ViewComponentDialogType';
+import CapstoneFormDialog from '../../utils/CapstoneFormDialog';
 import { NominalTypeDialogFields } from './NominalTypeDialogFields';
-import NominalTypeFormDialog from './NominalTypeFormDialog';
-import { NominalTypeProps } from './NominalTypes';
 
-interface NominalTypeDialogProps {
-    open: boolean;
-    handleClose: () => void;
-    selectedRow: NominalTypeProps | undefined | null;
-}
+function NominalTypeDialog({ ...props }: ViewComponentDialogType) {
+    const { dialogState, handleClose, selectedRow } = props;
 
-function NominalTypeDialog({ ...props }: NominalTypeDialogProps) {
-    const { open, handleClose, selectedRow } = props;
-
-    return NominalTypeFormDialog({
+    return CapstoneFormDialog({
         formTitle: 'Nominal Type Details',
         contentText: 'View Nominal Type Record',
         fields: NominalTypeDialogFields,
-        open: open,
+        dialogState: dialogState,
         handleClose: handleClose,
         selectedRow: selectedRow,
     });

@@ -1,8 +1,8 @@
 import { GridColDef } from '@mui/x-data-grid';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { NominalCodeType } from '../../types/ViewComponentType';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
-import { NominalCodeType } from './NominalCode';
 
 function createRecord({ ...props }: NominalCodeType) {
     return {
@@ -30,18 +30,18 @@ function NominalCodesList() {
 
     const columns: GridColDef[] = [
         // {
-        //     field: 'layout_name',
-        //     headerName: 'Layout Name',
-        //     type: 'string',
-        //     flex: 0.25,
-        // },
-        // {
         //     field: 'id',
         //     headerName: 'ID',
         //     headerAlign: 'left',
         //     align: 'left',
         //     type: 'number',
         //     flex: 0.1,
+        // },
+        // {
+        //     field: 'layout_name',
+        //     headerName: 'Layout Name',
+        //     type: 'string',
+        //     flex: 0.25,
         // },
         {
             field: 'nominal_code',

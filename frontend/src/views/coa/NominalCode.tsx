@@ -2,17 +2,8 @@ import { GridColDef } from '@mui/x-data-grid';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { NominalCodeType } from '../../types/ViewComponentType';
 import CapstoneDataGrid from '../../utils/CapstoneDataGrid';
-
-export type NominalCodeType = {
-    id: number;
-    layout_name: string;
-    nominal_code: number;
-    nominal_name: string;
-    type_name: string;
-    created_at: string;
-    updated_at: string;
-};
 
 function createRecord({ ...props }: NominalCodeType) {
     return {

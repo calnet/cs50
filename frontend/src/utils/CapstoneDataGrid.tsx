@@ -2,9 +2,13 @@ import { Paper } from '@mui/material';
 import { Box } from '@mui/system';
 import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
 import { useState } from 'react';
+import BankingAccountListDialog from '../views/banking/BankingAccountListDialog';
+import CoaCategoryDialog from '../views/coa/CoaCategoryDialog';
 import CoaLayoutDialog from '../views/coa/CoaLayoutDialog';
 import NominalCodeDialog from '../views/coa/NominalCodeDialog';
 import NominalTypeDialog from '../views/coa/NominalTypeDialog';
+import CustomerDialog from '../views/customers/CustomerDialog';
+import SupplierDialog from '../views/customers/SupplierDialog';
 
 type CapstoneDataGridType = {
     // eslint-disable-next-line
@@ -15,22 +19,25 @@ type CapstoneDataGridType = {
 };
 
 function CapstoneDataGrid({ rows, columns, heading, dialog = '' }: CapstoneDataGridType) {
-    const [openDialog, setOpenDialog] = useState(false);
+    const [dialogState, setDialogState] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
 
     const height = rows.length > 0 ? 'auto' : 200;
 
     const handleRowClick = (params: GridRowParams) => {
         console.log(params.row);
-        setOpenDialog(true);
+        setDialogState(true);
     };
 
     const componentMap = {
-        // CoaCategoryDialog: CoaCategoryDialog,
+        BankingAccountListDialog: BankingAccountListDialog,
+        CoaCategoryDialog: CoaCategoryDialog,
         CoaLayoutDialog: CoaLayoutDialog,
+        CustomerDialog: CustomerDialog,
         // LayoutDialog: LayoutDialog,
         NominalCodeDialog: NominalCodeDialog,
         NominalTypeDialog: NominalTypeDialog,
+        SupplierDialog: SupplierDialog,
 
         // Add more components as needed
     };
@@ -62,7 +69,7 @@ function CapstoneDataGrid({ rows, columns, heading, dialog = '' }: CapstoneDataG
                     // checkboxSelection
                 />
                 {DialogComponent && (
-                    <DialogComponent open={openDialog} handleClose={() => setOpenDialog(false)} selectedRow={selectedRow} />
+                    <DialogComponent dialogState={dialogState} handleClose={() => setDialogState(false)} selectedRow={selectedRow} />
                 )}
             </Box>
         </>

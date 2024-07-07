@@ -1,18 +1,18 @@
 import { ViewComponentDialogType } from '../../types/ViewComponentDialogType';
 import CapstoneFormDialog from '../../utils/CapstoneFormDialog';
-import { NominalCodeDialogFields } from './NominalCodeDialogFields';
+import CoaCategoryDialogFields from './CoaCategoryDialogFields';
 
-function NominalCodeDialog({ ...props }: ViewComponentDialogType) {
+function CoaCategoryDialog({ ...props }: ViewComponentDialogType) {
     const { dialogState, handleClose, selectedRow } = props;
 
     return CapstoneFormDialog({
-        formTitle: 'Nominal Code Details',
-        contentText: 'View Nominal Code Record',
-        fields: NominalCodeDialogFields,
+        formTitle: 'Coa Category Details',
+        contentText: 'View Coa Category Record',
+        fields: CoaCategoryDialogFields,
         dialogState: dialogState,
         handleClose: handleClose,
         selectedRow: selectedRow,
     });
 }
 
-export default NominalCodeDialog;
+export default CoaCategoryDialog;
