@@ -50,7 +50,7 @@
         },
         {
             "name": "Python: Django",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}\\backend\\manage.py",
             "args": ["runserver"],
@@ -63,7 +63,7 @@
         },
         {
             "name": "Python: Debug - Django",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}\\backend\\manage.py",
             "args": ["runserver"],
