@@ -1,17 +1,6 @@
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    Paper,
-    PaperProps,
-    TextField,
-    TextFieldProps,
-} from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
-import Draggable from 'react-draggable';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, TextFieldProps } from '@mui/material';
+import { useEffect, useState } from 'react';
+import PaperComponent from './PaperComponent';
 
 interface FormDialogType {
     formTitle?: string;
@@ -24,17 +13,6 @@ interface FormDialogType {
     // TODO: Fix the type of selectedRow
     // selectedRow: ViewComponentType | any;
 }
-
-function PaperComponent(props: PaperProps) {
-    const nodeRef = useRef(null);
-
-    return (
-        <Draggable nodeRef={nodeRef} handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
-            <Paper {...props} ref={nodeRef} />
-        </Draggable>
-    );
-}
-
 function CapstoneFormDialog({ ...props }: FormDialogType) {
     const { formTitle, contentText, fields, dialogState, handleClose, selectedRow } = props;
     const [localDialogState, setLocalDialogState] = useState(false);
