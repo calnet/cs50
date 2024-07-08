@@ -1,18 +1,8 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, TextFieldProps } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { FormDialogType } from '../types/FormDialogType';
 import PaperComponent from './PaperComponent';
 
-interface FormDialogType {
-    formTitle?: string;
-    contentText?: string;
-    fields: TextFieldProps[];
-    dialogState: boolean;
-    handleClose: () => void;
-    // eslint-disable-next-line
-    selectedRow: any;
-    // TODO: Fix the type of selectedRow
-    // selectedRow: ViewComponentType | any;
-}
 function CapstoneFormDialog({ ...props }: FormDialogType) {
     const { formTitle, contentText, fields, dialogState, handleClose, selectedRow } = props;
     const [localDialogState, setLocalDialogState] = useState(false);
