@@ -21,7 +21,7 @@ function BankingAccountList() {
             .get(url)
             .then((response) => {
                 setData(response.data);
-                console.log(response.data[0]);
+                // console.log(response.data[0]);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
@@ -40,54 +40,64 @@ function BankingAccountList() {
             headerName: 'Account Name',
             type: 'string',
             flex: 1,
+            editable: true,
         },
         {
             field: 'account_number',
             headerName: 'Account Number',
             type: 'number',
             flex: 1,
+            editable: true,
         },
         {
             field: 'account_sort_code',
             headerName: 'Sort Code',
             type: 'string',
             flex: 1,
+            editable: true,
         },
         {
             field: 'account_status',
             headerName: 'Account Status',
-            type: 'string',
+            type: 'singleSelect',
             flex: 1,
+            editable: true,
+            valueOptions: ['Active', 'Inactive'],
         },
         {
             field: 'account_type',
             headerName: 'Account Type',
             type: 'string',
             flex: 1,
+            editable: true,
         },
         {
             field: 'balance',
             headerName: 'Balance',
             type: 'number',
             flex: 1,
+            editable: true,
         },
         {
             field: 'credit_limit',
             headerName: 'Credit Limit',
             type: 'number',
             flex: 1,
+            editable: true,
         },
         {
             field: 'currency',
             headerName: 'Currency',
             type: 'string',
             flex: 1,
+            editable: true,
         },
         {
             field: 'opening_balance',
             headerName: 'Opening Balance',
             type: 'number',
             flex: 1,
+            editable: true,
         },
         {
             field: 'opening_balance_date',
@@ -131,7 +141,7 @@ function BankingAccountList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Banking" dialog="BankingAccountListDialog" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Banking" dialog="BankingAccountListDialog" url={url} />;
 }
 
 export default BankingAccountList;
