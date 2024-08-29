@@ -18,12 +18,19 @@ def banking_account_list(request):
                                        context={'request': request},
                                        many=True)
 
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'POST':
+
+        data = BankAccount.objects.update_or_create(
+            id=request.data['id'], defaults=request.data)
+
         serializer = BankingSerializer(data=request.data)
+
         if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+            if data[1] is True:
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
