@@ -110,7 +110,7 @@ function CustomersList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Customers" dialog="CustomerDialog" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Customers" dialog="CustomerDialog" url={url} />;
 }
 
 export default CustomersList;

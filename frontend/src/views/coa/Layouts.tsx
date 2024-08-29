@@ -77,7 +77,7 @@ function Layouts() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Layouts" dialog="LayoutDialog" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Layouts" dialog="LayoutDialog" url={url} />;
 }
 
 export default Layouts;

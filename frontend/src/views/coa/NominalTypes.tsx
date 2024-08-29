@@ -87,7 +87,7 @@ function NominalTypesList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Types" dialog="NominalTypeDialog" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Types" dialog="NominalTypeDialog" url={url} />;
 }
 
 export default NominalTypesList;

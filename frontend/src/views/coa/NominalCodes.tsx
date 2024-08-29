@@ -106,7 +106,7 @@ function NominalCodesList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Codes" dialog="NominalCodeDialog" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Codes" dialog="NominalCodeDialog" url={url} />;
 }
 
 export default NominalCodesList;

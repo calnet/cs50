@@ -89,7 +89,7 @@ function NominalTypeGet() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Type Details" dialog="NominalTypeDialog" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Type Details" dialog="NominalTypeDialog" url={url} />;
 }
 
 export default NominalTypeGet;

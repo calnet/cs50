@@ -74,7 +74,7 @@ function NominalCodeGet() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Code Details" dialog="NominalCodeDialog" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Nominal Code Details" dialog="NominalCodeDialog" url={url} />;
 }
 
 export default NominalCodeGet;

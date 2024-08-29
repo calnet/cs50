@@ -110,7 +110,7 @@ function SuppliersList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Suppliers" dialog="SupplierDialog" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Suppliers" dialog="SupplierDialog" url={url} />;
 }
 
 export default SuppliersList;
