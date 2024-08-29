@@ -1,3 +1,5 @@
+import { GridColDef, GridRowModel } from '@mui/x-data-grid';
+
 export type BankingAccountType = {
     id: number;
     account_type: string;
@@ -12,6 +14,14 @@ export type BankingAccountType = {
     opening_balance_date: string;
     created_at: string;
     updated_at: string;
+};
+
+export type CapstoneDataGridType = {
+    rows: GridRowModel[];
+    columns: GridColDef[];
+    heading: string;
+    dialog: string;
+    url: string;
 };
 
 export type CoaCategoryType = {
