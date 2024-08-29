@@ -103,7 +103,7 @@ function CoaLayoutList() {
         )
     );
 
-    return <CapstoneDataGrid rows={rows} columns={columns} heading="Chart of Accounts Layout" dialog="CoaLayoutDialog" />;
+    return <CapstoneDataGrid rows={rows} columns={columns} heading="Chart of Accounts Layout" dialog="CoaLayoutDialog" url={url} />;
 }
 
 export default CoaLayoutList;
