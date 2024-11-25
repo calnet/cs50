@@ -1,22 +1,17 @@
 import { Paper } from '@mui/material';
 import { Box } from '@mui/system';
-import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
-import { useState } from 'react';
-import BankingAccountListDialog from '../views/banking/BankingAccountListDialog';
-import CoaCategoryDialog from '../views/coa/CoaCategoryDialog';
-import CoaLayoutDialog from '../views/coa/CoaLayoutDialog';
-import NominalCodeDialog from '../views/coa/NominalCodeDialog';
-import NominalTypeDialog from '../views/coa/NominalTypeDialog';
-import CustomerDialog from '../views/customers/CustomerDialog';
-import SupplierDialog from '../views/customers/SupplierDialog';
+import { DataGrid, GridRowParams } from '@mui/x-data-grid';
+import { lazy, useEffect, useState } from 'react';
+import { CapstoneDataGridType } from '../types/ViewComponentType';
+import Loadable from '../ui-component/Loadable';
 
-type CapstoneDataGridType = {
-    // eslint-disable-next-line
-    rows: any[];
-    columns: GridColDef[];
-    heading: string;
-    dialog?: string;
-};
+const BankingAccountListDialog = Loadable(lazy(() => import('../views/banking/BankingAccountListDialog')));
+const CoaCategoryDialog = Loadable(lazy(() => import('../views/coa/CoaCategoryDialog')));
+const CoaLayoutDialog = Loadable(lazy(() => import('../views/coa/CoaLayoutDialog')));
+const NominalCodeDialog = Loadable(lazy(() => import('../views/coa/NominalCodeDialog')));
+const NominalTypeDialog = Loadable(lazy(() => import('../views/coa/NominalTypeDialog')));
+const CustomerDialog = Loadable(lazy(() => import('../views/customers/CustomerDialog')));
+const SupplierDialog = Loadable(lazy(() => import('../views/suppliers/SupplierDialog')));
 
 function CapstoneDataGrid({ rows, columns, heading, dialog = '' }: CapstoneDataGridType) {
     const [dialogState, setDialogState] = useState(false);
