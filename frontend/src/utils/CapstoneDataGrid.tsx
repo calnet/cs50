@@ -13,7 +13,7 @@ const NominalTypeDialog = Loadable(lazy(() => import('../views/coa/NominalTypeDi
 const CustomerDialog = Loadable(lazy(() => import('../views/customers/CustomerDialog')));
 const SupplierDialog = Loadable(lazy(() => import('../views/suppliers/SupplierDialog')));
 
-function CapstoneDataGrid({ rows, columns, heading, dialog = '' }: CapstoneDataGridType) {
+function CapstoneDataGrid({ rows, columns, heading, dialog = '', url = '' }: CapstoneDataGridType) {
     const [dialogState, setDialogState] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
 
